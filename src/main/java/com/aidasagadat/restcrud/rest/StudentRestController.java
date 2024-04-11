@@ -35,6 +35,13 @@ public class StudentRestController {
 
     @GetMapping("/students/{studentId}")
     public Student getStudent(@PathVariable int studentId){
+
+        // check studentId against list size
+
+        if((studentId >= students.size()) || studentId<0){
+            throw new StudentNotFoundException("Student id " + studentId + " not found");
+        }
+
         return students.get(studentId);
     }
 
